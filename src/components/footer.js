@@ -8,7 +8,7 @@ export default React => {
 
 		return (
 			<Text style={styles.instructions} onPress={ onPressFooter }>
-			  { props.subject } { props.mode } { '\n' }
+			  { props.subject } { props.mode } { props.toggled.toString() } { '\n' }
 			</Text>
 		);
 	};

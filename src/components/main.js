@@ -1,4 +1,4 @@
-import { ScrollView, Image, StyleSheet } from 'react-native';
+import { View, Image, StyleSheet } from 'react-native';
 
 import createFooter from './footer';
 
@@ -6,26 +6,25 @@ export default React => {
 
 	const { func } = React.PropTypes;
 
-	const main = ({ onChangeMode, onChangeSubject, ...props }) => {
+	const main = ({ onChangeMode, onChangeSubject, onChangeToggled, ...props }) => {
 
 		const Footer = createFooter(React);
 
-	    const { mode, subject } = props;
+	    const { mode, subject, toggled } = props;
 
 	    const childrenProps = {
 	      styles,
 	      mode,
-	      subject
+	      subject,
+	      toggled
 	    };
 
 	    return (
-	      <ScrollView>
-	      	<Image 
-	      		source={{uri: 'https://i.chzbgr.com/full/7345954048/h7E2C65F9/'}}
-	      		style={{width: 360, height: 203}} />
+	      <View style={styles.container}>
 	        <Footer onPressFooter={ onChangeMode } { ...childrenProps }></Footer>
 	        <Footer onPressFooter={ onChangeSubject } { ...childrenProps }></Footer>
-	      </ScrollView>
+	        <Footer onPressFooter={ (e) => onChangeToggled(e, true) } { ...childrenProps }></Footer>
+	      </View>
 	    );
 
 	};
@@ -45,7 +44,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#F5FCFF',
+    backgroundColor: '#FFF',
   },
   welcome: {
     fontSize: 20,
@@ -53,8 +52,9 @@ const styles = StyleSheet.create({
     margin: 10,
   },
   instructions: {
-    textAlign: 'center',
-    color: '#000',
+    textAlign: 'left',
+    color: '#fff',
     marginBottom: 5,
+    backgroundColor: '#000'
   },
 });

@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 
 import * as actions from '../actions';
-import createMain from '../components/main';
+import createMain from '../components/main1';
 
 const mapStateToProps = (state) => {
   return state
@@ -14,6 +14,9 @@ const mapDispatchToProps = (dispatch) => {
     },
     onChangeSubject: (e) => {
     	dispatch(actions.setSubject('Aloha!'));
+    },
+    onChangeToggled: (e, toggled) => {
+      dispatch(actions.setToggled(toggled));
     }
   }
 };
